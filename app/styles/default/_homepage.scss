@@ -1,0 +1,53 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 25px auto;
+  display: flex;
+  justify-content: space-between;
+
+  .featured-threads {
+    flex-grow: 0.7;
+
+    .thread-items {
+
+      .thread-item {
+        cursor: pointer;
+        margin: 15px auto;
+        border-bottom: 1px solid #f5f5f5;
+        padding: 10px;
+        transition-duration: .6s;
+
+        &:hover {
+          background: #f5f5f5;
+        }
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+
+        > a {
+          color: #333;
+        }
+
+        .metadata {
+          display: flex;
+          align-items: center;
+          margin: 10px auto;
+
+          [class^="thread-"] {
+            margin: 0 15px 0 0;
+
+            * {
+              margin-right: 10px;
+            }
+          }
+
+          .thread-owner-details {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+  }
+}
