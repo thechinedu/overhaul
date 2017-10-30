@@ -10,6 +10,5 @@
       "js": ["./bundle.js"],
       "css": ["./normalize.css", "./font-awesome.css", "./init.css"]
     }
-  ],
-  "web_accessible_resources": ["*.woff2", "*.woff", "*.ttf"]
+  ]
 }

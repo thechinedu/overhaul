@@ -2,6 +2,24 @@ import React from 'react';
 import auth from 'utils/auth';
 
 export default class Header extends React.Component {
+  welcomeSection() {
+    if (location.pathname === '/' || location.pathname === '/home') {
+      return (
+        <div className="welcome-section">
+          <div className="container">
+            <h1>
+              Welcome to Nigeria's biggest forum
+            </h1>
+
+            <p>
+              Nairaland is a community of friendly Nigerians and friends of Nigeria
+            </p>
+          </div>
+        </div>
+      )
+    }
+  }
+
   navlinks() {
     if (auth.userSignedIn(this.props.user)) {
       console.log(true);
@@ -35,6 +53,8 @@ export default class Header extends React.Component {
             {  this.navlinks() }
           </nav>
         </div>
+
+        { this.welcomeSection() }
 
         <div className="container">
           <a href="/trending">

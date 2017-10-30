@@ -1,6 +1,7 @@
 import React from 'react';
 import pageData from 'utils/api/home';
-import ThreadList from './threadlist';
+import ThreadList from 'shared/threadlist';
+import Boards from './boards';
 
 /*
 pageData.featured ==> Array
@@ -14,9 +15,9 @@ export default class Home extends React.Component {
   render() {
     // console.log(pageData.boards(this.props.document), pageData.featured(this.props.document));
     return (
-      <section className="wrapper">
+      <section className="wrapper homepage">
         <aside className="boards">
-          Discussions
+          <Boards sections={pageData.boards(this.props.document)} />
         </aside>
 
         <main className="featured-threads">

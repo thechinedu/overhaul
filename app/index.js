@@ -5,6 +5,7 @@ import cheerio from 'cheerio';
 import Header from './components/shared/header';
 import Footer from './components/shared/footer';
 import Home from './components/home';
+import CommentThread from './components/comment-thread';
 
 import removeOldStyles from 'utils/remove-old-styles';
 import generateNewApplicationContainer from 'utils/generate-app-container';
@@ -19,9 +20,13 @@ import './styles/default/overhaul.scss';
 
 class App extends React.Component {
   renderRequiredComponent() {
-    if (true) {
+    // console.log($('table[summary=posts]').length)
+    if (location.pathname === '/' || location.pathname === '/home') { // Homepage
       return <Home document={$} />
+    } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) { // Comments thread
+      return <CommentThread document={$}/>
     }
+
   }
 
   render() {

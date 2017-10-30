@@ -4,6 +4,49 @@
   display: flex;
   justify-content: space-between;
 
+  .boards {
+    .board-listing {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 10px auto;
+        padding-left: 30px;
+      }
+
+      .main {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          background: $light-green;
+          border-radius: 4px;
+          left: 0;
+          top: -20%;
+        }
+
+        & ~ .main {
+          &::before {
+            background: $orange;
+          }
+
+          & ~ .main {
+            &::before {
+              background: $dim-blue;
+            }
+          }
+        }
+      }
+    }
+
+    a {
+      color: $light-grey;
+    }
+  }
+
   .featured-threads {
     flex-grow: 0.7;
 
@@ -12,12 +55,12 @@
       .thread-item {
         cursor: pointer;
         margin: 15px auto;
-        border-bottom: 1px solid #f5f5f5;
+        border-bottom: 1px solid $almost-white;
         padding: 10px;
         transition-duration: .6s;
 
         &:hover {
-          background: #f5f5f5;
+          background: $almost-white;
         }
 
         &:first-of-type {
@@ -25,7 +68,7 @@
         }
 
         > a {
-          color: #333;
+          color: $light-grey;
         }
 
         .metadata {
@@ -44,7 +87,7 @@
           .thread-owner-details {
             display: flex;
             align-items: center;
-            flex-grow: 1;
+            flex-basis: 70%;
           }
         }
       }

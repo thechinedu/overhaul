@@ -1,6 +1,6 @@
 header {
   .navigation-wrapper {
-    box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px $lighter-grey;
     width: 100%;
     padding: 7px 12px;
 
@@ -12,13 +12,13 @@ header {
       margin: 0 auto;
 
       a {
-        background:  #3dd97e;
+        background:  $light-green;
         padding: 7px 12px;
-        color: #fff;
+        color: $white;
 
         &.logo {
           background: none;
-          color:  #3dd97e;
+          color:  $light-green;
           font-size: 30px;
         }
       }
@@ -31,30 +31,55 @@ header {
         }
 
         .fa-search {
-          color: #fff;
+          color: $white;
           position: absolute;
-          top: 7px;
+          top: 12px;
           left: 9px;
           opacity: .5;
         }
 
         input[type="search"] {
-          background: #465775;
+          background: $dim-blue;
           border: 0;
-          border-radius: 4px;
-          color: #fff;
+          border-radius: 20px;
+          color: $white;
           font-weight: 100;
           text-indent: 22px;
           padding: 7px 12px;
           outline: 0;
-          width: 200px;
+          width: 400px;
+          height: 38px;
 
           &::placeholder {
-            color: #fff;
+            color: $white;
             opacity: .5;
           }
         }
       }
+    }
+  }
+
+  .welcome-section {
+    background-color: $almost-black;
+    background-image: url('https://image.ibb.co/k1Njuk/Stock_Snap_T2_SO7_MDTYS.jpg');
+    padding: 10px;
+    background-position: 0 45%;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $white;
+    height: 200px;
+
+    .container {
+      padding-top: 20px;
+    }
+
+    h1 {
+      font-size: 35px;
+    }
+
+    p {
+      width: 50%;
     }
   }
 
@@ -63,7 +88,7 @@ header {
     margin: 15px auto 30px;
 
     a {
-      color: #666;
+      color: $light-grey;
       margin-right: 15px;
 
       .fa {

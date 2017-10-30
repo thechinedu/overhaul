@@ -14,7 +14,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      utils: path.resolve(__dirname, 'app/utils')
+      utils: path.resolve(__dirname, 'app/utils'),
+      shared: path.resolve(__dirname, 'app/components/shared')
     }
   }
 }

@@ -1,0 +1,81 @@
+.comments-page {
+  flex-wrap: wrap;
+
+  .thread-title {
+    flex-basis: 100%;
+  }
+
+  .comments {
+    flex-basis: 66.66666666666667%;
+
+    .comment-items {
+      .comment-item {
+        border-bottom: 1px solid $almost-white;
+        display: flex;
+        padding: 10px;
+        margin-bottom: 15px;
+
+        .profile-pic {
+          margin-right: 15px;
+        }
+
+        .comment-details {
+          width: 100%;
+          
+          .username {
+            font-weight: 600;
+            padding: 0 12px 0 0;
+          }
+
+          .comment-added-date {
+            color: $lighter-grey;
+          }
+
+          .comment {
+            margin: 15px auto;
+
+            blockquote {
+              background-color: $almost-white;
+              border-left: 2px solid $lighter-grey;
+              color: $almost-black;
+              padding: 12px;
+              margin: 10px 0;
+
+              a {
+                display: inline-block;
+                margin-bottom: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .page-actions {
+    flex-basis: 33.33333333333333%;
+
+    button {
+      display: block;
+      margin: 7px 0;
+      width: 50%;
+      border-radius: 2px;
+      margin-left: 20px;
+      outline: 0;
+
+      &.reply {
+        background-color: $light-green;
+        color: $white;
+      }
+
+      &.follow-thread {
+        background-color: $almost-white;
+        color: $light-grey;
+
+        .fa {
+          padding-right: 12px;
+        }
+      }
+    }
+  }
+}
