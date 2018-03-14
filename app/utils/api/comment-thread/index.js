@@ -12,13 +12,24 @@ data.comments = (doc) => {
         res = [];
 
   commentBodies.forEach( (elem, index) => {
-    const cheerioElem = doc(elem),
-          userName = users[index],
+    const userName = users[index],
           createdAt = doc(timestamps[index]).text(),
           commentBody = doc(elem).html();
 
     res.push({ userName, createdAt, commentBody });
   });
+
+  return res;
+};
+
+data.lastPage = (doc) => {
+  let res = Array.from(doc('.clientimages + p a'));
+
+  res = res.filter(item => {
+    return doc(item).text().match(/\(\d+\)/)
+  });
+
+  res = parseInt(doc(res.pop()).text().replace(/[\(\)]/g, ''));
 
   return res;
 };

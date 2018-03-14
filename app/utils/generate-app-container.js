@@ -10,4 +10,3 @@ const generateNewApplicationContainer = () => {
 }
 
 export default generateNewApplicationContainer;
-

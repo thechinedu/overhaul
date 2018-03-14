@@ -1,11 +1,11 @@
 const data = {};
 
-data.featured = (doc) => {
-  const featured = Array.from(doc('.boards .featured a')),
+const fetchFeaturedLinks = (rootSelector, elemStr) => {
+  const featured = Array.from(rootSelector(elemStr)),
         res = [];
 
   featured.forEach( elem => {
-    const cheerioElem = doc(elem),
+    const cheerioElem = rootSelector(elem),
           text = cheerioElem.text(),
           url = cheerioElem.attr('href'),
           obj = { text, url };
@@ -14,6 +14,16 @@ data.featured = (doc) => {
   });
 
   return res;
+};
+
+data.oldFeaturedLinks = (doc) => {
+  return fetchFeaturedLinks(doc, 'table[summary=links] a');
+};
+
+data.currentFeaturedLinks = (doc) => {
+  const result = fetchFeaturedLinks(doc, '.boards .featured a');
+
+  return result.splice(0, result.length - 1);
 };
 
 data.boards = (doc) => {
@@ -32,6 +42,10 @@ data.boards = (doc) => {
 
   return res;
 };
+
+data.lastPage = (doc) => (
+  parseInt(doc('.body > p:nth-of-type(3) b:last-of-type').text())
+);
 
 
 export default data;
