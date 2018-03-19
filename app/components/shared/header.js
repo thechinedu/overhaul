@@ -28,7 +28,7 @@ export default class Header extends React.Component {
         <span className="navlinks-container">
           <i className="fa fa-search"></i>
           <input type="search" placeholder="Search Nairaland" />
-          <a href="/register">
+          <a href="/confirm_email">
             <i className="fa fa-plus"></i>
             Join Nairaland
           </a>

@@ -6,6 +6,8 @@ import Header from './components/shared/header';
 import Footer from './components/shared/footer';
 import Home from './components/home';
 import CommentThread from './components/comment-thread';
+import ConfirmEmail from './components/confirm-email';
+import Register from './components/register';
 
 import removeOldStyles from 'utils/remove-old-styles';
 import generateNewApplicationContainer from 'utils/generate-app-container';
@@ -20,11 +22,20 @@ import './styles/default/overhaul.scss';
 
 class App extends React.Component {
   renderRequiredComponent() {
+    // <SimpleRoute document={$}>
+    //   <Route path={'/'} fallbacks={['/home']} component={Home}></Route>
+    //   <Route path='/:thread-id/:thread-name' component={CommentThread}></Route>
+    //   <Route path='/confirm_email' component={ConfirmEmail}></Route>
+    // </SimpleRoute>
     // console.log($('table[summary=posts]').length)
     if (location.pathname === '/' || location.pathname === '/home') { // Homepage
       return <Home document={$} />
     } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) { // Comments thread
       return <CommentThread document={$}/>
+    } else if ( location.pathname === '/confirm_email' ) {
+      return <ConfirmEmail />
+    } else if ( location.pathname === '/register' ) {
+      return <Register document={$} />
     }
 
   }
