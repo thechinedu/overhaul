@@ -22,18 +22,6 @@ data.comments = (doc) => {
   return res;
 };
 
-data.lastPage = (doc) => {
-  let res = Array.from(doc('.clientimages + p a'));
-
-  res = res.filter(item => {
-    return doc(item).text().match(/\(\d+\)/)
-  });
-
-  res = parseInt(doc(res.pop()).text().replace(/[\(\)]/g, ''));
-
-  return res;
-};
-
 export default data;
 
 // [

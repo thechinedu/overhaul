@@ -3,6 +3,7 @@ import cheerio from 'cheerio';
 
 import CommentList from 'shared/commentlist';
 import pageData from 'utils/api/comment-thread';
+import lastPageCount from 'utils/get-last-page-count';
 
 /*
 pageData.commentThreadTitle ==> String
@@ -27,7 +28,7 @@ export default class CommentThread extends React.Component {
     threadTitle: pageData.commentThreadTitle(this.props.document),
     comments: pageData.comments(this.props.document),
     nextPage: 1,
-    lastPage: pageData.lastPage(this.props.document)
+    lastPage: lastPageCount(this.props.document)
   }
 
   fetchComments = () => {

@@ -8,18 +8,27 @@ export default class ThreadItem extends React.Component {
 
     this.state = {
       threadOwnerName: '',
-      threadSection: ''
+      threadSection: '',
+      commentCount: ''
     };
   }
 
   componentDidMount() {
     threadDetails.fetchOwnerDetails(this.props.url).then( data => {
-      let doc = cheerio.load(data),
-          threadOwnerName = doc('table[summary=posts] .user').first().text(),
-          threadSection = doc('.body > h2 + .bold a:nth-of-type(3)').text();
+      const doc = cheerio.load(data),
+            threadOwnerName = doc('table[summary=posts] .user').first().text(),
+            threadSection = doc('.body > h2 + .bold a:nth-of-type(3)').text();
+
+      this.setTotalCommentCount();
 
       this.setState( () => ( { threadOwnerName, threadSection } ));
     });
+  }
+
+  setTotalCommentCount() {
+    const res = threadDetails.fetchTotalCommentCount(this.props.url);
+
+    res.then(commentCount => { this.setState({ commentCount }) });
   }
 
   render() {
@@ -48,8 +57,7 @@ export default class ThreadItem extends React.Component {
           <div className="thread-comment-count">
             <i className="fa fa-comments"></i>
             <span>
-              {/* { threadDetails.fetchTotalCommentCount(url) } */}
-              23
+              { this.state.commentCount }
             </span>
           </div>
         </div>
