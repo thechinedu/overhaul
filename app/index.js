@@ -21,7 +21,7 @@ generateNewApplicationContainer();
 import './styles/default/overhaul.scss';
 
 class App extends React.Component {
-  renderRequiredComponent() {
+  renderRequiredComponent({user}) {
     // <SimpleRoute document={$}>
     //   <Route path={'/'} fallbacks={['/home']} component={Home}></Route>
     //   <Route path='/:thread-id/:thread-name' component={CommentThread}></Route>
@@ -29,9 +29,9 @@ class App extends React.Component {
     // </SimpleRoute>
     // console.log($('table[summary=posts]').length)
     if (location.pathname === '/' || location.pathname === '/home') { // Homepage
-      return <Home document={$} />
+      return <Home document={$} currentUser={user} />
     } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) { // Comments thread
-      return <CommentThread document={$}/>
+      return <CommentThread document={$} currentUser={user} />
     } else if ( location.pathname === '/confirm_email' ) {
       return <ConfirmEmail />
     } else if ( location.pathname === '/register' ) {
@@ -44,7 +44,7 @@ class App extends React.Component {
     return (
       <div>
         <Header user={userName} />
-        { this.renderRequiredComponent() }
+        { this.renderRequiredComponent({user: userName}) }
         <Footer />
       </div>
     );

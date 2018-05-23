@@ -47,6 +47,9 @@ export default class CommentThread extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
+    const { comments } = this.state;
+
     return (
       <section className="wrapper comments-page">
         <header className="thread-title">
@@ -56,7 +59,10 @@ export default class CommentThread extends React.Component {
         </header>
 
         <main className="comments">
-          <CommentList comments={ this.state.comments } />
+          <CommentList
+            currentUser={currentUser}
+            comments={ comments }
+          />
         </main>
 
         <aside className="page-actions">

@@ -39,7 +39,8 @@ export default class Home extends React.Component {
   }
 
   render() {
-    // console.log(pageData.boards(this.props.document), pageData.featured(this.props.document));
+    const { currentUser } = this.props;
+
     return (
       <section className="wrapper homepage">
         <aside className="boards">
@@ -47,7 +48,7 @@ export default class Home extends React.Component {
         </aside>
 
         <main className="featured-threads">
-          <ThreadList threads={this.state.threadList} />
+          <ThreadList threads={this.state.threadList} currentUser={currentUser} />
 
           { this.state.nextPage <= this.state.lastPage &&
             <button onClick={this.fetchThreads}>Load more</button>}

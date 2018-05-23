@@ -1,5 +1,7 @@
 import cheerio from 'cheerio';
 import lastPageCount from 'utils/get-last-page-count';
+import auth  from 'utils/auth';
+import { fetchPlaceholderImage } from 'utils/fetch-image';
 
 
 const threadDetails = {};
@@ -10,6 +12,14 @@ threadDetails.fetchOwnerDetails = (url) => {
       return html;
     });
   });
+};
+
+threadDetails.fetchOwnerImage = (currentUser, moniker) => {
+  if (auth.userSignedIn(currentUser)) {
+    console.log('signed in request')
+  } else {
+    return fetchPlaceholderImage(moniker);
+  }
 };
 
 threadDetails.fetchTotalCommentCount = (url) => {

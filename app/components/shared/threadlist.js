@@ -1,16 +1,23 @@
 import React from 'react';
 import ThreadItem from 'shared/threaditem';
 
-const mapThreadList = (threads) => {
+const mapThreadList = (threads, currentUser) => {
   return threads.map( (thread, index) => {
-    return <ThreadItem text={thread.text} url={thread.url} key={index} />
+    return (
+      <ThreadItem
+        text={thread.text}
+        url={thread.url}
+        key={index}
+        currentUser={currentUser}
+      />
+    );
   });
 };
 
-const ThreadList = ({ threads }) => {
+const ThreadList = ({ threads, currentUser }) => {
   return (
     <div className="thread-items">
-      { mapThreadList(threads) }
+      { mapThreadList(threads, currentUser) }
     </div>
   )
 };

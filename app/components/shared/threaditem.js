@@ -32,32 +32,35 @@ export default class ThreadItem extends React.Component {
   }
 
   render() {
+    const { url, currentUser, text } = this.props;
+    const { threadOwnerName, threadSection, commentCount } = this.state;
+    const threadOwnerImage = threadDetails.fetchOwnerImage(currentUser, threadOwnerName);
+
     return (
       <div className="thread-item">
-        <a href={this.props.url}>
-          { this.props.text }
+        <a href={url}>
+          { text }
         </a>
 
         <div className="metadata">
           <div className="thread-owner-details">
-            {/* { threadDetails.fetchOwnerImage(url) } */}
-            <img src="http://placehold.it/35x35/3dd97e/ffffff?text=d" alt="" style={{borderRadius: "50%"}} className="image" />
+            <img src={threadOwnerImage} alt="" style={{borderRadius: "50%"}} className="image" />
             <span className="username">
-              { this.state.threadOwnerName }
+              { threadOwnerName }
             </span>
           </div>
 
           <div className="thread-section">
             <i className="fa fa-folder-open"></i>
             <span>
-              { this.state.threadSection }
+              { threadSection }
             </span>
           </div>
 
           <div className="thread-comment-count">
             <i className="fa fa-comments"></i>
             <span>
-              { this.state.commentCount }
+              { commentCount }
             </span>
           </div>
         </div>
@@ -66,42 +69,3 @@ export default class ThreadItem extends React.Component {
     );
   }
 }
-
-
-
-// const ThreadItem = ({ text, url }) => {
-//   return (
-//     <div className="thread-item">
-//       <a href={url}>
-//         { text }
-//       </a>
-//
-//       <div className="metadata">
-//         <div className="thread-owner-details">
-//           {/* { threadDetails.fetchOwnerImage(url) } */}
-//           <img src="http://placehold.it/35x35/3dd97e/ffffff?text=d" alt="" style={{borderRadius: "50%"}} className="image" />
-//           <span className="username">
-//             { threadDetails.fetchOwnerName(url) }
-//           </span>
-//         </div>
-//
-//         <div className="thread-section">
-//           <i className="fa fa-folder-open"></i>
-//           <span>
-//             {/* { threadDetails.fetchThreadSectionName(url) } */}
-//             politics
-//           </span>
-//         </div>
-//
-//         <div className="thread-comment-count">
-//           <i className="fa fa-comments"></i>
-//           <span>
-//             {/* { threadDetails.fetchTotalCommentCount(url) } */}
-//             23
-//           </span>
-//         </div>
-//       </div>
-//
-//     </div>
-//   )
-// };
