@@ -9,24 +9,15 @@ import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
 
-import removeOldStyles from 'utils/remove-old-styles';
 import generateNewApplicationContainer from 'utils/generate-app-container';
 
 const $ = cheerio.load(document.body.innerHTML);
 const userName = $('#up .user').text();
 
-removeOldStyles();
-generateNewApplicationContainer();
-
 import './styles/default/overhaul.scss';
 
 class App extends React.Component {
   renderRequiredComponent({user}) {
-    // <SimpleRoute document={$}>
-    //   <Route path={'/'} fallbacks={['/home']} component={Home}></Route>
-    //   <Route path='/:thread-id/:thread-name' component={CommentThread}></Route>
-    //   <Route path='/confirm_email' component={ConfirmEmail}></Route>
-    // </SimpleRoute>
     // console.log($('table[summary=posts]').length)
     if (location.pathname === '/' || location.pathname === '/home') { // Homepage
       return <Home document={$} currentUser={user} />
@@ -51,4 +42,8 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+generateNewApplicationContainer({
+  renderer: ReactDOM.render,
+  container: <App />,
+  ignoredRoutes: ['/login']
+});
