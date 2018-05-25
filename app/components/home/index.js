@@ -19,10 +19,13 @@ export default class Home extends React.Component {
     boards: pageData.boards(this.props.document),
     threadList: pageData.currentFeaturedLinks(this.props.document),
     nextPage: 1,
-    lastPage: 2646
+    lastPage: 2646,
+    fetchingThreads: false
   }
 
   fetchThreads = () => {
+    this.setState({ fetchingThreads: true });
+
     fetch(`/links/${this.state.nextPage}`).then(res => {
       res.text().then(html => {
         const $ = cheerio.load(html),
@@ -32,7 +35,8 @@ export default class Home extends React.Component {
         this.setState({
           threadList: updatedThreadList,
           nextPage: this.state.nextPage + 1,
-          lastPage: pageData.lastPage($)
+          lastPage: pageData.lastPage($),
+          fetchingThreads: false
         });
       });
     })
@@ -51,7 +55,13 @@ export default class Home extends React.Component {
           <ThreadList threads={this.state.threadList} currentUser={currentUser} />
 
           { this.state.nextPage <= this.state.lastPage &&
-            <button onClick={this.fetchThreads}>Load more</button>}
+            <button onClick={this.fetchThreads} className="load-new-threads">
+              Load more
+              {this.state.fetchingThreads &&
+                <i className="fa fa-spinner fa-pulse"></i>
+              }
+            </button>
+          }
         </main>
       </section>
     );

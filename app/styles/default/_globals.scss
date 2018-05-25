@@ -1,17 +1,18 @@
 #app {
-  font-family: 'Avenir', 'Nunito', 'Source Sans Pro', sans-serif;
-  margin: 0 auto;
   color: $light-grey;
+  font-family: 'Avenir', 'Nunito', 'Source Sans Pro', sans-serif;
   font-size: 14px;
+  margin: 0 auto;
   overflow-x: hidden;
 
   a {
     text-decoration: none;
   }
+}
 
-  button {
-    padding: 7px 12px;
-    border: 0;
-    cursor: pointer;
-  }
+button {
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+  padding: 7px 12px;
 }
