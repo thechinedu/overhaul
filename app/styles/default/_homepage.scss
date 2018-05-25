@@ -93,4 +93,13 @@
       }
     }
   }
+
+  .load-new-threads {
+    border: 1px solid $grey;
+    padding: 10px 15px;
+
+    .fa {
+      margin-left: 10px;
+    }
+  }
 }
