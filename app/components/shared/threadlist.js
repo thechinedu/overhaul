@@ -23,4 +23,3 @@ const ThreadList = ({ threads, currentUser }) => {
 };
 
 export default ThreadList;
-
