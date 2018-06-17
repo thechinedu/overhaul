@@ -1,8 +1,7 @@
 import cheerio from 'cheerio';
 import lastPageCount from 'utils/get-last-page-count';
 import auth  from 'utils/auth';
-import { fetchPlaceholderImage } from 'utils/fetch-image';
-
+import { fetchPlaceholderImage, fetchAuthImage } from 'utils/fetch-image';
 
 const threadDetails = {};
 
@@ -14,9 +13,11 @@ threadDetails.fetchOwnerDetails = (url) => {
   });
 };
 
-threadDetails.fetchOwnerImage = (currentUser, moniker) => {
+threadDetails.fetchOwnerImage = async (currentUser, moniker) => {
   if (auth.userSignedIn(currentUser)) {
-    console.log('signed in request')
+    const res = await fetchAuthImage(currentUser, moniker);
+
+    return res;
   } else {
     return fetchPlaceholderImage(moniker);
   }
@@ -26,8 +27,8 @@ threadDetails.fetchTotalCommentCount = (url) => {
   return fetch(url).then(res => {
     return res.text().then(html => {
       const doc = cheerio.load(html),
-            pageCount = lastPageCount(doc),
-            path = new URL(url).pathname;
+        pageCount = lastPageCount(doc),
+        path = new URL(url).pathname;
 
       if (pageCount === 0) return doc('.narrow').length;
 
@@ -44,7 +45,7 @@ const countComments = (url, pageCount) => {
   return fetch(url).then(res => {
     return res.text().then(html => {
       const doc = cheerio.load(html),
-            commentCount = doc('.narrow').length;
+        commentCount = doc('.narrow').length;
 
       return (commentsPerPage * pageCount) + commentCount;
     });

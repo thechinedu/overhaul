@@ -12,19 +12,54 @@ header {
       margin: 0 auto;
 
       a {
+        color: $dim-blue;
+        transition-duration: 0.4s;
+
+        &:hover {
+          color: transparentize($dim-blue, 0.5);
+        }
+
+        .fa {
+          padding-right: 10px;
+        }
+      }
+
+      .btn {
         background:  $light-green;
         padding: 7px 12px;
         color: $white;
 
-        &.logo {
-          background: none;
+        &:hover {
+          color: $white;
+        }
+
+        .fa {
+          padding: 0;
+        }
+      }
+
+      .logo {
+        color:  $light-green;
+        font-size: 30px;
+
+        &:hover {
           color:  $light-green;
-          font-size: 30px;
         }
       }
 
       .navlinks-container {
         position: relative;
+
+        &.auth-active {
+          .profile-image {
+            margin-right: 0;
+            vertical-align: middle;
+          }
+
+          .logoutall {
+            margin-left: -5px;
+          }
+        }
 
         * {
           margin: 0 10px;
@@ -80,20 +115,6 @@ header {
 
     p {
       width: 50%;
-    }
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 15px auto 30px;
-
-    a {
-      color: $light-grey;
-      margin-right: 15px;
-
-      .fa {
-        padding-right: 10px;
-      }
     }
   }
 }

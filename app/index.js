@@ -20,13 +20,13 @@ class App extends React.Component {
   renderRequiredComponent({user}) {
     // console.log($('table[summary=posts]').length)
     if (location.pathname === '/' || location.pathname === '/home') { // Homepage
-      return <Home document={$} currentUser={user} />
+      return (<Home document={$} currentUser={user} />);
     } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) { // Comments thread
-      return <CommentThread document={$} currentUser={user} />
+      return (<CommentThread document={$} currentUser={user} />);
     } else if ( location.pathname === '/confirm_email' ) {
-      return <ConfirmEmail />
+      return (<ConfirmEmail />);
     } else if ( location.pathname === '/register' ) {
-      return <Register document={$} />
+      return (<Register document={$} />);
     }
 
   }
@@ -34,7 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header user={userName} />
+        <Header user={userName} document={$} />
         { this.renderRequiredComponent({user: userName}) }
         <Footer />
       </div>

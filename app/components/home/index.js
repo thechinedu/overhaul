@@ -29,8 +29,8 @@ export default class Home extends React.Component {
     fetch(`/links/${this.state.nextPage}`).then(res => {
       res.text().then(html => {
         const $ = cheerio.load(html),
-              newThreads = pageData.oldFeaturedLinks($),
-              updatedThreadList = this.state.threadList.concat(newThreads);
+          newThreads = pageData.oldFeaturedLinks($),
+          updatedThreadList = this.state.threadList.concat(newThreads);
 
         this.setState({
           threadList: updatedThreadList,
