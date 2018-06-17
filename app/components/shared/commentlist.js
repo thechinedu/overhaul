@@ -2,31 +2,45 @@ import React from 'react';
 import renderHTML from 'react-render-html';
 import threadDetails from 'utils/api/thread-details';
 
-const Comment = ({ currentUser, userName, createdAt, commentBody }) => {
-  const profileImage = threadDetails.fetchOwnerImage(currentUser, userName);
+class Comment extends React.Component {
+  state = {
+    profileImage: 'http://placehold.it/35x35'
+  }
 
-  return (
-    <div className="comment-item">
-      <div className="profile-pic">
-        <img src={profileImage} alt="" style={{borderRadius: "50%"}} className="image" />
-      </div>
+  async componentDidMount() {
+    const { currentUser, userName } = this.props;
+    const profileImage = await threadDetails.fetchOwnerImage(currentUser, userName);
 
-      <div className="comment-details">
-        <span className="username">
-          { userName }
-        </span>
+    this.setState({ profileImage });
+  }
 
-        <span className="comment-added-date">
-          { createdAt }
-        </span>
+  render() {
+    const { profileImage } = this.state;
+    const { createdAt, commentBody, userName } = this.props;
 
-        <div className="comment">
-          { renderHTML(commentBody) }
+    return (
+      <div className="comment-item">
+        <div className="profile-pic">
+          <img src={profileImage} alt="profile image" className="profile-image" />
+        </div>
+
+        <div className="comment-details">
+          <span className="username">
+            { userName }
+          </span>
+
+          <span className="comment-added-date">
+            { createdAt }
+          </span>
+
+          <div className="comment">
+            { renderHTML(commentBody) }
+          </div>
         </div>
       </div>
-    </div>
-  )
-};
+    );
+  }
+}
 
 const mapCommentsList = (comments, currentUser) => {
   return comments.map( ({userName, createdAt, commentBody}, index) => (

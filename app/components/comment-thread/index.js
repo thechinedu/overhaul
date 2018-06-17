@@ -41,7 +41,7 @@ export default class CommentThread extends React.Component {
         this.setState({
           comments: updatedComments,
           nextPage: this.state.nextPage + 1
-        })
+        });
       });
     });
   }
