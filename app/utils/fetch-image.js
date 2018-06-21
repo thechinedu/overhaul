@@ -1,6 +1,8 @@
 import cheerio from 'cheerio';
 
 export const fetchPlaceholderImage = (name) => {
+  if (!name) return;
+
   const imageText = name[0] ? name[0].toUpperCase() : '₦';
 
   return (

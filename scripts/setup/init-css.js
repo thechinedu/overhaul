@@ -1,0 +1,1 @@
+module.exports = 'body{background: none !important;display: none;}';
