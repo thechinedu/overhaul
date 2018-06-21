@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "node ./scripts/setup",
     "start": "webpack -w"
   },
   "keywords": [],
