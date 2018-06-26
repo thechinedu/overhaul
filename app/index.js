@@ -8,6 +8,7 @@ import Home from './components/home';
 import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
+import SearchResults from './components/search-results';
 
 import generateNewApplicationContainer from 'utils/generate-app-container';
 
@@ -18,15 +19,16 @@ import './styles/default/overhaul.scss';
 
 class App extends React.Component {
   renderRequiredComponent({user}) {
-    // console.log($('table[summary=posts]').length)
-    if (location.pathname === '/' || location.pathname === '/home') { // Homepage
+    if (location.pathname === '/' || location.pathname === '/home') {
       return (<Home document={$} currentUser={user} />);
-    } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) { // Comments thread
+    } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) {
       return (<CommentThread document={$} currentUser={user} />);
     } else if ( location.pathname === '/confirm_email' ) {
       return (<ConfirmEmail />);
     } else if ( location.pathname === '/register' ) {
       return (<Register document={$} />);
+    } else if ( location.pathname === '/search' ) {
+      return (<SearchResults document={$} />);
     }
 
   }

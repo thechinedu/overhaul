@@ -32,6 +32,27 @@ export default class Header extends React.Component {
     }
   }
 
+  searchQuery() {
+    const isSearchPage =  location.pathname === '/search';
+    const query = location.search;
+
+    return isSearchPage ? query.replace(/&.+/g, '').split(/\?q=/)[1] : '';
+  }
+
+  searchBar() {
+    return (
+      <form className="search-container" action="/search">
+        <input type="search"
+          placeholder="Search Nairaland"
+          name="q"
+          defaultValue={this.searchQuery()}
+        />
+        <i className="fa fa-search"></i>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+
   authLinks() {
     const { document, user: currentUser } = this.props;
     const { profileImage } = this.state;
@@ -39,8 +60,7 @@ export default class Header extends React.Component {
 
     return (
       <span className="navlinks-container auth-active">
-        <i className="fa fa-search"></i>
-        <input type="search" placeholder="Search Nairaland" />
+        { this.searchBar() }
         <a href={`/${currentUser}`}>
           <img src={profileImage} alt="" className="profile-image" />
           <span>{currentUser}</span>
@@ -58,8 +78,7 @@ export default class Header extends React.Component {
   guestLinks() {
     return (
       <span className="navlinks-container">
-        <i className="fa fa-search"></i>
-        <input type="search" placeholder="Search Nairaland" />
+        { this.searchBar() }
         <a href="/confirm_email" className="btn">
           <i className="fa fa-plus"></i>
           Join Nairaland
