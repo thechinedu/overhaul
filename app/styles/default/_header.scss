@@ -1,8 +1,14 @@
 header {
+  margin-bottom: 4%;
+
   .navigation-wrapper {
+    background: $white;
     box-shadow: 0 0 3px $lighter-grey;
     width: 100%;
-    padding: 7px 12px;
+    padding: 9px 14px;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
 
     .navbar {
       display: flex;
@@ -103,18 +109,16 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 200px;
-
-    .container {
-      padding-top: 20px;
-    }
+    margin-top: 4%;
+    text-align: center;
 
     h1 {
       font-size: 35px;
-    }
-
-    p {
-      width: 50%;
+      margin-bottom: 0;
     }
   }
 }
