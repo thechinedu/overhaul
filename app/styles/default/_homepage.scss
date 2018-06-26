@@ -4,6 +4,10 @@
   display: flex;
   justify-content: space-between;
 
+  &.homepage {
+    margin-top: -1%;
+  }
+
   .boards {
     .board-listing {
       list-style: none;
