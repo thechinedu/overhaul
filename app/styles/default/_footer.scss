@@ -1,0 +1,23 @@
+@keyframes pulsate {
+  0% {
+    transform: scale(0.9)
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.footer {
+  border-top: 1px solid $almost-white;
+  flex-shrink: 0;
+  margin-top: 15px;
+  padding: 20px;
+  text-align: center;
+
+  .fa {
+    animation-name: pulsate;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    color: $dim-blue;
+  }
+}
