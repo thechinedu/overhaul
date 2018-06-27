@@ -4,6 +4,13 @@
   font-size: 14px;
   margin: 0 auto;
   overflow-x: hidden;
+  height: 100vh;
+
+  div[data-reactroot] {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
   a {
     text-decoration: none;
