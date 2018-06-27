@@ -101,7 +101,7 @@ export default class Header extends React.Component {
 
   render () {
     return (
-      <header>
+      <header className="main-header">
         <div className="navigation-wrapper">
           <nav className="navbar">
             <a href="/" className="logo">
