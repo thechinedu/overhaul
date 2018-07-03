@@ -1,10 +1,9 @@
 import React from 'react';
-import cheerio from 'cheerio';
 
 import CommentList from 'shared/commentlist';
 import pageData from 'utils/api/comment-thread';
-import lastPageCount from 'utils/get-last-page-count';
 
+import withPaginateableData from 'utils/hoc/with-paginateable-data';
 /*
 pageData.commentThreadTitle ==> String
 ex. Buhari does some presedential sh*t again.
@@ -23,32 +22,14 @@ ex.
 
 */
 
+@withPaginateableData(pageData)
 export default class CommentThread extends React.Component {
   state = {
-    threadTitle: pageData.commentThreadTitle(this.props.document),
-    comments: pageData.comments(this.props.document),
-    nextPage: 1,
-    lastPage: lastPageCount(this.props.document)
-  }
-
-  fetchComments = () => {
-    fetch(`${location.pathname}/${this.state.nextPage}`).then(res => {
-      res.text().then(html => {
-        const $ = cheerio.load(html)
-        const newComments = pageData.comments($),
-              updatedComments = this.state.comments.concat(newComments);
-
-        this.setState({
-          comments: updatedComments,
-          nextPage: this.state.nextPage + 1
-        });
-      });
-    });
+    threadTitle: pageData.commentThreadTitle(this.props.document)
   }
 
   render() {
-    const { currentUser } = this.props;
-    const { comments } = this.state;
+    const { currentUser, data: comments } = this.props;
 
     return (
       <section className="wrapper comments-page">
@@ -73,8 +54,7 @@ export default class CommentThread extends React.Component {
           </button>
         </aside>
 
-        { this.state.nextPage <= this.state.lastPage &&
-          <button onClick={this.fetchComments}>Load more</button>}
+        {this.props.children}
       </section>
     );
   }

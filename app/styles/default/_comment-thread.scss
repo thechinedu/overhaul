@@ -21,7 +21,7 @@
 
         .comment-details {
           width: 100%;
-          
+
           .username {
             font-weight: 600;
             padding: 0 12px 0 0;
@@ -33,19 +33,6 @@
 
           .comment {
             margin: 15px auto;
-
-            blockquote {
-              background-color: $almost-white;
-              border-left: 2px solid $lighter-grey;
-              color: $almost-black;
-              padding: 12px;
-              margin: 10px 0;
-
-              a {
-                display: inline-block;
-                margin-bottom: 8px;
-              }
-            }
           }
         }
       }

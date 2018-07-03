@@ -1,19 +1,12 @@
 import React from 'react';
 import auth from 'utils/auth';
 import threadDetails from 'utils/api/thread-details';
+import searchQuery from 'utils/search-query';
 
+import withProfileImage from 'utils/hoc/with-profile-image';
+
+@withProfileImage
 export default class Header extends React.Component {
-  state = {
-    profileImage: 'http://placehold.it/35x35'
-  }
-
-  async componentDidMount() {
-    const { user } = this.props;
-    const profileImage = await threadDetails.fetchOwnerImage(user);
-
-    this.setState({ profileImage });
-  }
-
   welcomeSection() {
     if (location.pathname === '/' || location.pathname === '/home') {
       return (
@@ -32,20 +25,13 @@ export default class Header extends React.Component {
     }
   }
 
-  searchQuery() {
-    const isSearchPage =  location.pathname === '/search';
-    const query = location.search;
-
-    return isSearchPage ? query.replace(/&.+/g, '').split(/\?q=/)[1] : '';
-  }
-
   searchBar() {
     return (
       <form className="search-container" action="/search">
         <input type="search"
           placeholder="Search Nairaland"
           name="q"
-          defaultValue={this.searchQuery()}
+          defaultValue={searchQuery()}
         />
         <i className="fa fa-search"></i>
         <button type="submit">Submit</button>
@@ -54,8 +40,7 @@ export default class Header extends React.Component {
   }
 
   authLinks() {
-    const { document, user: currentUser } = this.props;
-    const { profileImage } = this.state;
+    const { document, currentUser, profileImage } = this.props;
     const sessionId = auth.getSessionId(document);
 
     return (
@@ -92,7 +77,9 @@ export default class Header extends React.Component {
   }
 
   navlinks() {
-    if (auth.userSignedIn(this.props.user)) {
+    const { currentUser } = this.props;
+
+    if (auth.userSignedIn(currentUser)) {
       return this.authLinks();
     } else {
       return this.guestLinks();

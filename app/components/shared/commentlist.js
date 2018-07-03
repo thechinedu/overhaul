@@ -1,22 +1,12 @@
 import React from 'react';
 import renderHTML from 'react-render-html';
-import threadDetails from 'utils/api/thread-details';
 
+import withProfileImage from 'utils/hoc/with-profile-image';
+
+@withProfileImage
 class Comment extends React.Component {
-  state = {
-    profileImage: 'http://placehold.it/35x35'
-  }
-
-  async componentDidMount() {
-    const { currentUser, userName } = this.props;
-    const profileImage = await threadDetails.fetchOwnerImage(currentUser, userName);
-
-    this.setState({ profileImage });
-  }
-
   render() {
-    const { profileImage } = this.state;
-    const { createdAt, commentBody, userName } = this.props;
+    const { createdAt, commentBody, userName, profileImage } = this.props;
 
     return (
       <div className="comment-item">

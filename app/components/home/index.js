@@ -2,6 +2,8 @@ import React from 'react';
 import cheerio from 'cheerio';
 
 import pageData from 'utils/api/home';
+import lastPageCount from 'utils/get-last-page-count';
+
 import ThreadList from 'shared/threadlist';
 import Boards from './boards';
 
@@ -35,11 +37,11 @@ export default class Home extends React.Component {
         this.setState({
           threadList: updatedThreadList,
           nextPage: this.state.nextPage + 1,
-          lastPage: pageData.lastPage($),
+          lastPage: lastPageCount($),
           fetchingThreads: false
         });
       });
-    })
+    });
   }
 
   render() {
@@ -55,7 +57,7 @@ export default class Home extends React.Component {
           <ThreadList threads={this.state.threadList} currentUser={currentUser} />
 
           { this.state.nextPage <= this.state.lastPage &&
-            <button onClick={this.fetchThreads} className="load-new-threads">
+            <button onClick={this.fetchThreads} className="btn--load-more">
               Load more
               {this.state.fetchingThreads &&
                 <i className="fa fa-spinner fa-pulse"></i>

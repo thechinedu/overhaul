@@ -11,8 +11,8 @@ export default class ThreadItem extends React.Component {
   }
 
   async componentDidMount() {
-    const { currentUser } = this.props;
-    const html = await threadDetails.fetchOwnerDetails(this.props.url);
+    const { currentUser, url } = this.props;
+    const html = await threadDetails.fetchOwnerDetails(url);
     const doc = cheerio.load(html);
     const threadOwnerName = doc('table[summary=posts] .user').first().text();
     const threadSection = doc('.body > h2 + .bold a:nth-of-type(3)').text();
@@ -23,7 +23,8 @@ export default class ThreadItem extends React.Component {
   }
 
   async setTotalCommentCount() {
-    const commentCount = await threadDetails.fetchTotalCommentCount(this.props.url);
+    const { url } = this.props;
+    const commentCount = await threadDetails.fetchTotalCommentCount(url);
 
     this.setState({ commentCount });
   }

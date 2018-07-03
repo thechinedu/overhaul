@@ -1,16 +1,16 @@
 .search-page {
+  display: block;
   flex-wrap: wrap;
 
   .search-query {
     flex-basis: 100%;
   }
 
-  .search-result {
-    width: 60%;
-    border: 1px solid $almost-white;
-    padding: 30px;
-    margin-bottom: 15px;
-    border-radius: 15px;
-    box-shadow: 1px 1px 1px 0 $almost-white;
+  .highlight {
+    background: $dim-blue;
+    color: $white;
+    font-weight: bold;
+    margin: 0 3px;
+    padding: 0 10px;
   }
 }
