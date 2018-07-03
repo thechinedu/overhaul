@@ -15,6 +15,35 @@
   a {
     text-decoration: none;
   }
+
+  img {
+    max-width: 100%;
+  }
+
+  blockquote {
+    background-color: $almost-white;
+    border-left: 2px solid $lighter-grey;
+    color: $almost-black;
+    padding: 12px;
+    margin: 10px 0;
+
+    a {
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+  }
+
+  .btn--load-more {
+    background-color: $dim-blue;
+    border: 1px solid $dim-blue;
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px 15px;
+
+    .fa {
+      margin-left: 10px;
+    }
+  }
 }
 
 button {

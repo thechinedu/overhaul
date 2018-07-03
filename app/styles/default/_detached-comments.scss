@@ -1,0 +1,34 @@
+.detached-comments {
+
+  .detached-comment {
+    width: 60%;
+    border: 1px solid $almost-white;
+    padding: 30px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 0 $almost-white;
+
+    .metadata {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+       > * {
+         margin-right: 5px;
+         margin-left: 5px;
+       }
+
+       .profile-image {
+         margin: 0;
+       }
+
+       .fa {
+         margin-right: 5px;
+       }
+
+      .thread-title {
+        flex-basis: 100%;
+      }
+    }
+  }
+}

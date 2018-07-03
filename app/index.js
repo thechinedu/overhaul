@@ -8,25 +8,27 @@ import Home from './components/home';
 import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
+import SearchResults from './components/search-results';
 
 import generateNewApplicationContainer from 'utils/generate-app-container';
 
 const $ = cheerio.load(document.body.innerHTML);
-const userName = $('#up .user').text();
+const currentUser = $('#up .user').text();
 
 import './styles/default/overhaul.scss';
 
 class App extends React.Component {
-  renderRequiredComponent({user}) {
-    // console.log($('table[summary=posts]').length)
-    if (location.pathname === '/' || location.pathname === '/home') { // Homepage
-      return (<Home document={$} currentUser={user} />);
-    } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) { // Comments thread
-      return (<CommentThread document={$} currentUser={user} />);
+  renderRequiredComponent({currentUser}) {
+    if (location.pathname === '/' || location.pathname === '/home') {
+      return (<Home document={$} currentUser={currentUser} />);
+    } else if ( location.pathname.match(/^\/\d+\/[\w]+(-[\w]+)*(\/\d+)?$/) ) {
+      return (<CommentThread document={$} currentUser={currentUser} />);
     } else if ( location.pathname === '/confirm_email' ) {
       return (<ConfirmEmail />);
     } else if ( location.pathname === '/register' ) {
       return (<Register document={$} />);
+    } else if ( location.pathname === '/search' ) {
+      return (<SearchResults document={$} currentUser={currentUser} />);
     }
 
   }
@@ -34,8 +36,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header user={userName} document={$} />
-        { this.renderRequiredComponent({user: userName}) }
+        <Header currentUser={currentUser} document={$} />
+        { this.renderRequiredComponent({currentUser}) }
         <Footer />
       </div>
     );

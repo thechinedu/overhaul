@@ -1,15 +1,18 @@
-const lastPageCount = (doc) => {
-  let res = Array.from(doc('.clientimages + p a'));
+const lastPageCount = ($) => {
+  let res = Array.from($('#up ~ p > b'));
 
-  res = res.filter(item => {
-    return doc(item).text().match(/\(\d+\)/);
-  });
+  res = res.filter(item => $(item).text().match(/^\d+$/));
 
-  if ( res.length === 0 ) return 0;
+  if ( res.length === 0 ) {
+    res = Array.from($('.clientimages + p a'));
+    res = res.filter( item => $(item).text().match(/\(\d+\)/) );
 
-  res = parseInt(doc(res.pop()).text().replace(/[()]/g, ''));
+    return res.length ? parseInt($(res.pop()).text().replace(/\W+/g, '')) : 0;
+  }
 
-  return res;
+  res = parseInt($(res.pop()).text());
+
+  return (res - 1);
 };
 
 export default lastPageCount;

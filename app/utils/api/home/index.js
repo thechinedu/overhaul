@@ -2,13 +2,13 @@ const data = {};
 
 const fetchFeaturedLinks = (rootSelector, elemStr) => {
   const featured = Array.from(rootSelector(elemStr)),
-        res = [];
+    res = [];
 
   featured.forEach( elem => {
     const cheerioElem = rootSelector(elem),
-          text = cheerioElem.text(),
-          url = cheerioElem.attr('href'),
-          obj = { text, url };
+      text = cheerioElem.text(),
+      url = cheerioElem.attr('href'),
+      obj = { text, url };
 
     res.push(obj);
   });
@@ -28,24 +28,19 @@ data.currentFeaturedLinks = (doc) => {
 
 data.boards = (doc) => {
   const boards = Array.from(doc('.boards').first().find('td.l a')),
-        res = [];
+    res = [];
 
   boards.forEach( elem => {
     const cheerioElem = doc(elem),
-          name = cheerioElem.text(),
-          url = cheerioElem.attr('href'),
-          title = cheerioElem.attr('title'),
-          obj = { name, url, title };
+      name = cheerioElem.text(),
+      url = cheerioElem.attr('href'),
+      title = cheerioElem.attr('title'),
+      obj = { name, url, title };
 
-    res.push(obj)
+    res.push(obj);
   });
 
   return res;
 };
-
-data.lastPage = (doc) => (
-  parseInt(doc('.body > p:nth-of-type(3) b:last-of-type').text())
-);
-
 
 export default data;

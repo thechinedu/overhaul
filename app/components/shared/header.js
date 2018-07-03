@@ -1,19 +1,12 @@
 import React from 'react';
 import auth from 'utils/auth';
 import threadDetails from 'utils/api/thread-details';
+import searchQuery from 'utils/search-query';
 
+import withProfileImage from 'utils/hoc/with-profile-image';
+
+@withProfileImage
 export default class Header extends React.Component {
-  state = {
-    profileImage: 'http://placehold.it/35x35'
-  }
-
-  async componentDidMount() {
-    const { user } = this.props;
-    const profileImage = await threadDetails.fetchOwnerImage(user);
-
-    this.setState({ profileImage });
-  }
-
   welcomeSection() {
     if (location.pathname === '/' || location.pathname === '/home') {
       return (
@@ -32,15 +25,27 @@ export default class Header extends React.Component {
     }
   }
 
+  searchBar() {
+    return (
+      <form className="search-container" action="/search">
+        <input type="search"
+          placeholder="Search Nairaland"
+          name="q"
+          defaultValue={searchQuery()}
+        />
+        <i className="fa fa-search"></i>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+
   authLinks() {
-    const { document, user: currentUser } = this.props;
-    const { profileImage } = this.state;
+    const { document, currentUser, profileImage } = this.props;
     const sessionId = auth.getSessionId(document);
 
     return (
       <span className="navlinks-container auth-active">
-        <i className="fa fa-search"></i>
-        <input type="search" placeholder="Search Nairaland" />
+        { this.searchBar() }
         <a href={`/${currentUser}`}>
           <img src={profileImage} alt="" className="profile-image" />
           <span>{currentUser}</span>
@@ -58,8 +63,7 @@ export default class Header extends React.Component {
   guestLinks() {
     return (
       <span className="navlinks-container">
-        <i className="fa fa-search"></i>
-        <input type="search" placeholder="Search Nairaland" />
+        { this.searchBar() }
         <a href="/confirm_email" className="btn">
           <i className="fa fa-plus"></i>
           Join Nairaland
@@ -73,7 +77,9 @@ export default class Header extends React.Component {
   }
 
   navlinks() {
-    if (auth.userSignedIn(this.props.user)) {
+    const { currentUser } = this.props;
+
+    if (auth.userSignedIn(currentUser)) {
       return this.authLinks();
     } else {
       return this.guestLinks();
@@ -82,7 +88,7 @@ export default class Header extends React.Component {
 
   render () {
     return (
-      <header>
+      <header className="main-header">
         <div className="navigation-wrapper">
           <nav className="navbar">
             <a href="/" className="logo">

@@ -1,0 +1,16 @@
+.search-page {
+  display: block;
+  flex-wrap: wrap;
+
+  .search-query {
+    flex-basis: 100%;
+  }
+
+  .highlight {
+    background: $dim-blue;
+    color: $white;
+    font-weight: bold;
+    margin: 0 3px;
+    padding: 0 10px;
+  }
+}
