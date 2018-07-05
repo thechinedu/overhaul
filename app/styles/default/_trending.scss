@@ -1,0 +1,11 @@
+.trending-page {
+  flex-wrap: wrap;
+
+  header {
+    flex-basis: 100%;
+  }
+
+  main {
+    flex-grow: 0.5;
+  }
+}

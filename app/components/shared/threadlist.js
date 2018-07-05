@@ -7,6 +7,9 @@ const mapThreadList = (threads, currentUser) => {
       <ThreadItem
         text={thread.text}
         url={thread.url}
+        threadOwnerName={thread.ownerName}
+        threadSection={thread.section}
+        threadCommentCount={thread.commentCount}
         key={index}
         currentUser={currentUser}
       />

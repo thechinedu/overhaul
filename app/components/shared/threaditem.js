@@ -11,20 +11,29 @@ export default class ThreadItem extends React.Component {
   }
 
   async componentDidMount() {
-    const { currentUser, url } = this.props;
-    const html = await threadDetails.fetchOwnerDetails(url);
-    const doc = cheerio.load(html);
-    const threadOwnerName = doc('table[summary=posts] .user').first().text();
-    const threadSection = doc('.body > h2 + .bold a:nth-of-type(3)').text();
-    const profileImage = await threadDetails.fetchOwnerImage(currentUser, threadOwnerName);
+    const { currentUser,
+      url,
+      threadOwnerName ,
+      threadSection,
+      threadCommentCount
+    } = this.props;
+    let html, doc;
 
-    await this.setTotalCommentCount();
-    this.setState( () => ( { threadOwnerName, threadSection, profileImage } ));
+    if (!threadOwnerName && !threadSection && !threadCommentCount) {
+      html = await threadDetails.fetchOwnerDetails(url);
+      doc = cheerio.load(html);
+    }
+    const ownerName = threadOwnerName || doc('table[summary=posts] .user').first().text();
+    const section = threadSection || doc('.body > h2 + .bold a:nth-of-type(3)').text();
+    const profileImage = await threadDetails.fetchOwnerImage(currentUser, ownerName);
+
+    await this.setTotalCommentCount(threadCommentCount);
+    this.setState( () => ( { threadOwnerName, threadSection: section, profileImage } ));
   }
 
-  async setTotalCommentCount() {
+  async setTotalCommentCount(count) {
     const { url } = this.props;
-    const commentCount = await threadDetails.fetchTotalCommentCount(url);
+    const commentCount = count || await threadDetails.fetchTotalCommentCount(url);
 
     this.setState({ commentCount });
   }

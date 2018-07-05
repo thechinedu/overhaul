@@ -1,0 +1,42 @@
+.thread-items {
+
+  .thread-item {
+    cursor: pointer;
+    margin: 15px auto;
+    border-bottom: 1px solid $almost-white;
+    padding: 10px;
+    transition-duration: .6s;
+
+    &:hover {
+      background: $almost-white;
+    }
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    > a {
+      color: $light-grey;
+    }
+
+    .metadata {
+      display: flex;
+      align-items: center;
+      margin: 10px auto;
+
+      [class^="thread-"] {
+        margin: 0 15px 0 0;
+
+        * {
+          margin-right: 10px;
+        }
+      }
+
+      .thread-owner-details {
+        display: flex;
+        align-items: center;
+        flex-basis: 70%;
+      }
+    }
+  }
+}

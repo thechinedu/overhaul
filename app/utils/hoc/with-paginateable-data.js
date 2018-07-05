@@ -14,10 +14,11 @@ const loadPaginatedData = pageData => EnhancedComponent => {
     }
 
     fetchData = async () => {
+      const urlPath = pageData.urlPath || location.pathname;
       const { data, nextPage } = this.state;
       this.setState({ fetchingNewData: true });
 
-      const res = await fetch(`${pageData.urlPath}/${nextPage}`);
+      const res = await fetch(`${urlPath}/${nextPage}`);
       const html = await res.text();
       const $ = cheerio.load(html);
       const newData = pageData.paginateableData($);
