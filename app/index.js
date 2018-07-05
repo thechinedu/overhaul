@@ -9,6 +9,7 @@ import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
 import SearchResults from './components/search-results';
+import Trending from './components/trending';
 
 import generateNewApplicationContainer from 'utils/generate-app-container';
 
@@ -29,6 +30,8 @@ class App extends React.Component {
       return (<Register document={$} />);
     } else if ( location.pathname === '/search' ) {
       return (<SearchResults document={$} currentUser={currentUser} />);
+    } else if ( location.pathname === '/trending' ) {
+      return (<Trending document={$} currentUser={currentUser} />);
     }
 
   }
