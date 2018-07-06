@@ -6,7 +6,7 @@ export const fetchPlaceholderImage = (name) => {
   const imageText = name[0] ? name[0].toUpperCase() : '₦';
 
   return (
-    `http://placehold.it/35x35/${generateHexCode(name)}/fff?text=${imageText}`
+    `http://via.placeholder.com/35x35/${generateHexCode(name)}/fff?text=${imageText}`
   );
 };
 
@@ -49,4 +49,4 @@ const generateHexCode = (name) => {
   }
 
   return hexCode;
-}
+};

@@ -1,11 +1,11 @@
-.trending-page {
+.composite__thread-list {
   flex-wrap: wrap;
 
-  header {
+  .composite__header {
     flex-basis: 100%;
   }
 
-  main {
+  .main__content {
     flex-grow: 0.5;
   }
 }
