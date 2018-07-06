@@ -7,7 +7,7 @@ export default class ThreadItem extends React.Component {
     threadOwnerName: '',
     threadSection: '',
     commentCount: '',
-    profileImage: 'http://placehold.it/35x35'
+    profileImage: 'http://via.placeholder.com.com/35x35'
   }
 
   async componentDidMount() {

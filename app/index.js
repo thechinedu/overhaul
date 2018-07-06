@@ -9,7 +9,7 @@ import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
 import SearchResults from './components/search-results';
-import Trending from './components/trending';
+import CompositeThreadList from './components/shared/compositeThreadList';
 
 import generateNewApplicationContainer from 'utils/generate-app-container';
 
@@ -19,6 +19,7 @@ const currentUser = $('#up .user').text();
 import './styles/default/overhaul.scss';
 
 class App extends React.Component {
+
   renderRequiredComponent({currentUser}) {
     if (location.pathname === '/' || location.pathname === '/home') {
       return (<Home document={$} currentUser={currentUser} />);
@@ -31,7 +32,23 @@ class App extends React.Component {
     } else if ( location.pathname === '/search' ) {
       return (<SearchResults document={$} currentUser={currentUser} />);
     } else if ( location.pathname === '/trending' ) {
-      return (<Trending document={$} currentUser={currentUser} />);
+      return (
+        <CompositeThreadList
+          document={$}
+          currentUser={currentUser}
+          sectionClass={'trending-page'}
+          headerTitle={'Trending Topics'}
+        />
+      );
+    } else if ( location.pathname === '/topics' ) {
+      return (
+        <CompositeThreadList
+          document={$}
+          currentUser={currentUser}
+          sectionClass={'new-topics-page'}
+          headerTitle={'New Topics'}
+        />
+      );
     }
 
   }
