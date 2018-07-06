@@ -7,7 +7,7 @@ export default class ThreadItem extends React.Component {
     threadOwnerName: '',
     threadSection: '',
     commentCount: '',
-    profileImage: 'http://via.placeholder.com.com/35x35'
+    profileImage: 'http://via.placeholder.com/35x35'
   }
 
   async componentDidMount() {
@@ -28,7 +28,7 @@ export default class ThreadItem extends React.Component {
     const profileImage = await threadDetails.fetchOwnerImage(currentUser, ownerName);
 
     await this.setTotalCommentCount(threadCommentCount);
-    this.setState( () => ( { threadOwnerName, threadSection: section, profileImage } ));
+    this.setState( () => ( { threadOwnerName: ownerName, threadSection: section, profileImage } ));
   }
 
   async setTotalCommentCount(count) {

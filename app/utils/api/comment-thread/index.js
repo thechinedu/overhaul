@@ -23,7 +23,6 @@ data.comments = (doc) => {
 };
 
 data.paginateableData = data.comments;
-data.urlPath = location.pathname;
 
 export default data;
 

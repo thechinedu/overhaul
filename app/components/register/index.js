@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import cheerio from 'cheerio';
-import renderHTML from 'react-render-html';
 
 import pageActions from 'utils/api/register';
 
@@ -119,8 +118,10 @@ export default class Register extends Component {
             </button>
           </form>
 
-          <p className="registration-status">
-            {renderHTML(this.state.registrationStatus)}
+          <p
+            className="registration-status"
+            dangerouslySetInnerHTML={{__html: this.state.registrationStatus}}
+          >
           </p>
         </main>}
       </section>

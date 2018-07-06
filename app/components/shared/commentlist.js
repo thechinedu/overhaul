@@ -1,5 +1,4 @@
 import React from 'react';
-import renderHTML from 'react-render-html';
 
 import withProfileImage from 'utils/hoc/with-profile-image';
 
@@ -23,8 +22,10 @@ class Comment extends React.Component {
             { createdAt }
           </span>
 
-          <div className="comment">
-            { renderHTML(commentBody) }
+          <div
+            className="comment"
+            dangerouslySetInnerHTML={{__html: commentBody}}
+          >
           </div>
         </div>
       </div>

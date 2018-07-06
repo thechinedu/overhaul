@@ -8,10 +8,11 @@ import Home from './components/home';
 import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
-import SearchResults from './components/search-results';
-import CompositeThreadList from './components/shared/compositeThreadList';
+import CompositeThreadList from './components/shared/composite-thread-list';
+import CompositeCommentList from './components/shared/composite-comment-list';
 
 import generateNewApplicationContainer from 'utils/generate-app-container';
+import searchQuery from 'utils/search-query';
 
 const $ = cheerio.load(document.body.innerHTML);
 const currentUser = $('#up .user').text();
@@ -29,8 +30,6 @@ class App extends React.Component {
       return (<ConfirmEmail />);
     } else if ( location.pathname === '/register' ) {
       return (<Register document={$} />);
-    } else if ( location.pathname === '/search' ) {
-      return (<SearchResults document={$} currentUser={currentUser} />);
     } else if ( location.pathname === '/trending' ) {
       return (
         <CompositeThreadList
@@ -47,6 +46,24 @@ class App extends React.Component {
           currentUser={currentUser}
           sectionClass={'new-topics-page'}
           headerTitle={'New Topics'}
+        />
+      );
+    } else if ( location.pathname === '/recent' ) {
+      return (
+        <CompositeCommentList
+          document={$}
+          currentUser={currentUser}
+          sectionClass={'recent-topics-page'}
+          headerTitle={'Recent Topics'}
+        />
+      );
+    } else if ( location.pathname === '/search' ) {
+      return (
+        <CompositeCommentList
+          document={$}
+          currentUser={currentUser}
+          sectionClass={'search-page'}
+          headerTitle={`Search results for ${searchQuery()}`}
         />
       );
     }
