@@ -1,5 +1,4 @@
 import React from 'react';
-import renderHTML from 'react-render-html';
 
 import withProfileImage from 'utils/hoc/with-profile-image';
 
@@ -44,8 +43,10 @@ class DetachedComment extends React.Component {
           </div>
         </div>
 
-        <div className="content">
-          {renderHTML(content)}
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{__html: content}}
+        >
         </div>
       </div>
     );

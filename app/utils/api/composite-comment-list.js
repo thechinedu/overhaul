@@ -1,8 +1,6 @@
-import searchQuery from 'utils/search-query';
-
 const data = {};
 
-data.searchResults = (doc) => {
+data.commentList = (doc) => {
   const container = doc('.body > table:nth-of-type(2)'),
     titles = Array.from(container.find('.bold.l.pu')),
     content = Array.from(container.find('.narrow')),
@@ -22,8 +20,7 @@ data.searchResults = (doc) => {
   return res;
 };
 
-data.paginateableData = data.searchResults;
-data.urlPath = `/search/${searchQuery()}/0/0/0`;
+data.paginateableData = data.commentList;
 
 export default data;
 

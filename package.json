@@ -33,7 +33,6 @@
     "cheerio": "^1.0.0-rc.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-render-html": "^0.5.0",
     "sweetalert": "^2.1.0"
   }
 }

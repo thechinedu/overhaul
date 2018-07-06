@@ -5,7 +5,7 @@ const withProfileImage = EnhancedComponent => {
   /*eslint-disable react/display-name*/
   return class extends React.Component {
     state = {
-      profileImage: 'http://via.placeholder.com.com/35x35'
+      profileImage: 'http://via.placeholder.com/35x35'
     }
 
     async componentDidMount() {
