@@ -1,17 +1,10 @@
 {
   "presets": [
-    [
-      "env", {
-        "targets": {
-          "node": "current"
-        }
-      }
-    ],
+    "env",
     "react"
   ],
   "plugins": [
     "transform-class-properties",
-    "transform-async-to-generator",
     "transform-decorators-legacy"
   ]
 }
