@@ -25,6 +25,10 @@
           .username {
             font-weight: 600;
             padding: 0 12px 0 0;
+
+            > a {
+              color: $light-grey;
+            }
           }
 
           .comment-added-date {

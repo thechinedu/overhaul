@@ -8,6 +8,7 @@ import Home from './components/home';
 import CommentThread from './components/comment-thread';
 import ConfirmEmail from './components/confirm-email';
 import Register from './components/register';
+import Profile from './components/profile';
 import CompositeThreadList from './components/shared/composite-thread-list';
 import CompositeCommentList from './components/shared/composite-comment-list';
 
@@ -66,6 +67,12 @@ class App extends React.Component {
           headerTitle={`Search results for ${searchQuery()}`}
         />
       );
+    } else if ( location.pathname.match(/^\/[\w]+$/) ) {
+      return (<Profile document={$} currentUser={currentUser}/>);
+    } else if ( location.pathname.match(/^\/[\w]+\/topics$/) ) {
+      return (<CompositeThreadList document={$} currentUser={currentUser} />);
+    } else if ( location.pathname.match(/^\/[\w]+\/posts/) ) {
+      return (<CompositeCommentList document={$} currentUser={currentUser} />);
     }
 
   }
@@ -84,5 +91,5 @@ class App extends React.Component {
 generateNewApplicationContainer({
   renderer: ReactDOM.render,
   container: <App />,
-  ignoredRoutes: ['/login']
+  notImplementedRoutes: ['/login', '/editprofile']
 });

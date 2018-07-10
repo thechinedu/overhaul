@@ -47,11 +47,11 @@ export default class CommentThread extends React.Component {
         </main>
 
         <aside className="page-actions">
-          <button className="reply">Reply</button>
+          {/* <button className="reply">Reply</button>
           <button className="follow-thread">
             <i className="fa fa-star-o"></i>
             Follow
-          </button>
+          </button> */}
         </aside>
 
         {this.props.children}

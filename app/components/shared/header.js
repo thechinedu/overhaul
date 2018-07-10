@@ -95,7 +95,7 @@ export default class Header extends React.Component {
               &#8358;airaland
             </a>
             <a href="/trending">
-              <i className="fa fa-rocket"></i>
+              <i className="fa fa-line-chart"></i>
               Trending
             </a>
             <a href="/recent">

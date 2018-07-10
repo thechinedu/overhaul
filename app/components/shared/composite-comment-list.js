@@ -16,13 +16,14 @@ export default class CompositeCommentList extends React.Component {
       currentUser,
       data: comments,
       headerTitle,
-      sectionClass
+      sectionClass,
+      document: doc
     } = this.props;
 
     return (
       <section className={`wrapper composite__comment-list ${sectionClass}`}>
         <header className="composite__comment-list-header">
-          <h1>{headerTitle}</h1>
+          <h1>{headerTitle || pageData.headerTitle(doc)}</h1>
         </header>
 
         <main>

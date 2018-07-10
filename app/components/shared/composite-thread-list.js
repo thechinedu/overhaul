@@ -8,13 +8,19 @@ import withPaginateableData from 'utils/hoc/with-paginateable-data';
 @withPaginateableData(pageData)
 export default class CompositeThreadList extends React.Component {
   render() {
-    const { currentUser, headerTitle, sectionClass, data: threads } = this.props;
+    const {
+      currentUser,
+      headerTitle,
+      sectionClass,
+      data: threads,
+      document: doc
+    } = this.props;
 
     return (
       <section className={`wrapper composite__thread-list ${sectionClass}`}>
         <header className="composite__thread-list-header">
           <h1>
-            {headerTitle}
+            {headerTitle || pageData.headerTitle(doc)}
           </h1>
         </header>
 

@@ -125,6 +125,6 @@ export default class Register extends Component {
           </p>
         </main>}
       </section>
-    )
+    );
   }
 }

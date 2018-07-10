@@ -15,7 +15,9 @@ class Comment extends React.Component {
 
         <div className="comment-details">
           <span className="username">
-            { userName }
+            <a href={`/${userName}`}>
+              { userName }
+            </a>
           </span>
 
           <span className="comment-added-date">
