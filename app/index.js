@@ -20,6 +20,101 @@ const currentUser = $('#up .user').text();
 
 import './styles/default/overhaul.scss';
 
+class BetaMessage extends React.Component {
+  state = {
+    infoVisible: true
+  }
+
+  render() {
+    const { infoVisible } = this.state;
+    return (
+      <div style={{
+        background: '#3dd97e',
+        color: '#fff',
+        zIndex: 99999999,
+        position: 'fixed',
+        fontSize: '13px',
+        bottom: '0',
+        width: '20%',
+        padding: '0 10px',
+        lineHeight: '1.25'
+      }}>
+        {infoVisible &&
+          <span
+            style={{
+              position: 'absolute',
+              right: '10px',
+              fontSize: '40px',
+              cursor: 'pointer'
+            }}
+            onClick={() => {
+              this.setState({
+                infoVisible: !infoVisible
+              });
+            }}
+          >
+            &times;
+          </span>
+        }
+        <h3>
+          BETA
+          {!infoVisible &&
+            <span style={{
+              background: '#465774',
+              color: '#fff',
+              padding: '7px 12px',
+              borderRadius: '5px',
+              float: 'right',
+              fontWeight: 'normal',
+              fontSize: '13px',
+              cursor: 'pointer'
+            }}
+            onClick={() => {
+              this.setState({
+                infoVisible: !infoVisible
+              });
+            }}
+            >
+              show more
+            </span>}
+        </h3>
+        {infoVisible && <p>
+          Thanks for trying out overhaul. This product is still in beta so
+          you might encounter some broken or missing features. You can submit
+          bugs and feature requests
+          <a
+            href="https://github.com/blueyedgeek/overhaul/issues"
+            style={{
+              color: '#fff',
+              textDecoration: 'underline',
+              padding: '0 5px'
+            }}
+          >
+            here.
+          </a>
+          If you ever want to switch back to the old nairaland design,
+          you can do that by disabling the extension from the extensions page.
+
+          <a
+            href="mailto:chinedudaniel7@gmail.com?subject=Feedback+for+overhaul"
+            style={{
+              background: '#465774',
+              display: 'block',
+              textAlign: 'center',
+              padding: '7px 12px',
+              color: '#fff',
+              marginTop: '10px',
+              borderRadius: '5px'
+            }}
+          >
+            Send Feedback
+          </a>
+        </p>}
+      </div>
+    );
+  }
+}
+
 class App extends React.Component {
 
   renderRequiredComponent({currentUser}) {
@@ -81,6 +176,7 @@ class App extends React.Component {
     return (
       <div>
         <Header currentUser={currentUser} document={$} />
+        <BetaMessage />
         { this.renderRequiredComponent({currentUser}) }
         <Footer />
       </div>
