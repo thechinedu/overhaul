@@ -1,0 +1,67 @@
+.registration-page {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  main {
+    width: 50%;
+  }
+
+  form {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $almost-white;
+    padding: 20px;
+    width: 100%;
+
+  }
+
+  .form-wrapper {
+    position: relative;
+
+    .fa {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  }
+
+  input {
+    text-indent: 22px;
+    padding: 7px 12px;
+    outline: 0;
+    margin-bottom: 5px;
+    width: 300px;
+  }
+
+  button[type=submit] {
+    padding: 10px 15px;
+    background-color: $dim-blue;
+    color: $white;
+    border-radius: 20px;
+    margin-top: 5px;
+    width: 300px;
+
+    .fa {
+      margin-left: 10px;
+    }
+  }
+
+  .registration-status {
+    background-color: $light-green;
+    color: $white;
+    text-align: center;
+    padding: 7px 12px;
+
+    a {
+      padding-left: 5px;
+      color: $white;
+      text-decoration: underline;
+      text-transform: capitalize;
+    }
+  }
+}

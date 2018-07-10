@@ -8,7 +8,15 @@ import withProfileImage from 'utils/hoc/with-profile-image';
 @withProfileImage
 export default class Header extends React.Component {
   welcomeSection() {
-    if (location.pathname === '/' || location.pathname === '/home') {
+    const validRoutes = [
+      '/',
+      '/home',
+      '/register',
+      '/confirm_email',
+      '/register'
+    ];
+
+    if ( validRoutes.includes(location.pathname) ) {
       return (
         <div className="welcome-section">
           <div className="container">

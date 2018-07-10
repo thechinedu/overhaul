@@ -6,7 +6,11 @@ const auth = {
   },
 
   getSessionId(doc) {
-    return doc('input[name=session]').val();
+    return doc('.grad')
+      .eq(0)
+      .find('> a:last-of-type')
+      .attr('href')
+      .split('&session=')[1]
   }
 };
 

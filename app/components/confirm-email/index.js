@@ -17,21 +17,21 @@ export default class ConfirmEmail extends Component {
     });
 
     fetch(`/do_confirm_email?email=${encodeURIComponent(this.state.formVal)}`)
-    .then(res => {
-      res.text().then(html => {
-        const doc = cheerio.load(html);
-        let status = doc('title').text();
+      .then(res => {
+        res.text().then(html => {
+          const doc = cheerio.load(html);
+          let status = doc('title').text();
 
-        if (status.toLowerCase() === 'www.nairaland.com | 502: bad gateway') {
-          status = 'An error occured while confirming your email. Please try again.';
-        }
+          if (status.toLowerCase() === 'www.nairaland.com | 502: bad gateway') {
+            status = 'An error occured while confirming your email. Please try again.';
+          }
 
-        this.setState({
-          fetchingFormResult: false,
-          registrationStatus: status
+          this.setState({
+            fetchingFormResult: false,
+            registrationStatus: status
+          });
         });
       });
-    });
   }
 
   handleInputChange = (e) => {
@@ -41,8 +41,10 @@ export default class ConfirmEmail extends Component {
   }
 
   render() {
+    const { registrationStatus } = this.state;
+
     return (
-      <section className="confirm-email">
+      <section className="registration-page">
         <header>
           <h1>
             Submit your email to join Nairaland
@@ -51,27 +53,29 @@ export default class ConfirmEmail extends Component {
 
         <main>
           <form onSubmit={this.handleFormSubmit}>
-            <label htmlFor="email">Email: </label>
-            <input
-              type="email"
-              placeholder="not-seun@mail.com"
-              id="email"
-              value={this.state.formVal}
-              onChange={this.handleInputChange}
-              required
-            />
+            <div className="form-wrapper">
+              <i className="fa fa-envelope"></i>
+              <input
+                type="email"
+                placeholder="Email"
+                id="email"
+                value={this.state.formVal}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
 
             <button type="submit">
-              submit
+              Submit
               {this.state.fetchingFormResult &&
                 <i className="fa fa-spinner fa-pulse"></i>
               }
             </button>
           </form>
 
-          <p className="registration-status">
-            {this.state.registrationStatus}
-          </p>
+          {registrationStatus && <p className="registration-status">
+            {registrationStatus}
+          </p>}
         </main>
       </section>
     )
