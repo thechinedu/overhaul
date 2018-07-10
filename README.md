@@ -3,7 +3,7 @@
 Overhaul is a chrome extension that completely reimagines the visual appearance
 of the desktop website of [Nairaland](http://nairaland.com).
 
-![screenshot of nairaland homepage with the overhaul extension active](https://image.ibb.co/cUNJHT/Screen_Shot_2018_07_10_at_2_03_59_PM.png)
+![screenshot of nairaland homepage with the overhaul extension active](https://image.ibb.co/f9eJj8/Screen_Shot_2018_07_10_at_2_19_18_PM.png)
 
 ### Installing
 
