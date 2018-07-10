@@ -2,11 +2,11 @@ import removeOldStyles from './remove-old-styles';
 import injectStylesheetDeps from './inject-stylesheet-deps';
 import injectAlertMessage from './inject-alert-message';
 
-const generateNewApplicationContainer = ({container, renderer, ignoredRoutes}) => {
+const generateNewApplicationContainer = ({container, renderer, notImplementedRoutes}) => {
   let body = document.querySelector('body'),
     div = document.createElement('div');
 
-  if (ignoredRoutes.includes(location.pathname)) {
+  if (notImplementedRoutes.includes(location.pathname)) {
     body.style.display = 'block';
     injectAlertMessage({
       message: 'Why am I seeing the old design on this page?',

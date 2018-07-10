@@ -20,6 +20,8 @@ data.commentList = (doc) => {
   return res;
 };
 
+data.headerTitle = $ => $('#up ~ h2').text();
+
 data.paginateableData = data.commentList;
 
 export default data;

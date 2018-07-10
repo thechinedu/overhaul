@@ -1,3 +1,5 @@
+import tag from './tag';
+
 const injectStylesheetDeps = () => {
   const head = document.head;
   const fontAwesome = document.createElement('link');
@@ -27,12 +29,6 @@ const addAttrs = (arr) => {
     element.type = 'text/css';
     element.rel = 'stylesheet';
   });
-};
-
-const tag = (templates) => {
-  const template = templates[0];
-
-  return template.replace(/[\n\s{2,}]/g, '');
 };
 
 export default injectStylesheetDeps;

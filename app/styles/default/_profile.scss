@@ -1,0 +1,141 @@
+.profile-page {
+  flex: 1 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  .profile__header {
+    color: $white;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-basis: 100%;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+
+    .profile__header-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 0;
+      background-color: $light-green;
+      background-blend-mode: darken;
+      background-attachment: fixed;
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+      filter: blur(5px);
+      z-index: -1;
+      transform: scale(1.2);
+    }
+
+    div {
+      margin-left: 30%;
+    }
+  }
+
+  .tab__switcher {
+    border-bottom: 1px solid $almost-white;
+    flex-basis: 65%;
+    margin-left: 30%;
+    margin-top: 3%;
+    padding: 10px;
+
+    .tab__control {
+      cursor: pointer;
+      margin-right: 10px;
+
+      &.active {
+        border: 2px solid $almost-white;
+        border-bottom: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-weight: bold;
+        padding: 10px;
+      }
+    }
+  }
+
+  .profile__card {
+    // box-shadow: 1px 1px 1px 0 #000;
+    border: 1px solid $almost-white;
+    border-radius: 4px;
+    margin-left: 3.5%;
+    margin-top: -180px;
+    flex-basis: 20%;
+
+    .profile__card-header {
+      background-color: $light-green;
+      background-blend-mode: darken;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+      height: 350px;
+    }
+
+    .profile__card-body {
+      border: 1px solid $almost-white;
+      padding: 15px;
+
+      .metadata {
+
+        > div {
+          display: flex;
+          justify-content: space-between;
+          margin: 15px 0;
+        }
+      }
+    }
+  }
+
+  .user__posts {
+    margin-left: 7%;
+    margin-top: 2%;
+    flex-basis: 65%;
+  }
+
+  .button-group {
+    padding: 15px 0;
+
+    a {
+      margin-right: 10px;
+      background: $dim-blue;
+      border-radius: 20px;
+      color: $white;
+      padding: 10px 15px;
+    }
+  }
+
+  .user__following-list {
+    padding: 10px 0;
+    width: 80%;
+
+    .user__follow-card {
+      border-bottom: 1px solid $almost-white;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+
+      .user__user-info {
+        display: flex;
+        align-items: center;
+
+        > * {
+          margin-right: 10px;
+        }
+      }
+
+      .username {
+        color: $light-grey;
+      }
+
+      .user__follow-state {
+        background: $dim-blue;
+        color: $white;
+        border-radius: 20px;
+        padding: 10px 15px;
+      }
+    }
+  }
+}

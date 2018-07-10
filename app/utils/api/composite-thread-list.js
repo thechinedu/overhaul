@@ -1,6 +1,6 @@
 const data = {};
 
-data.threadList = ($) => {
+data.threadList = $ => {
   const list = Array.from($('table:not(#up):not(#down) tr'));
   const res = [];
 
@@ -17,6 +17,8 @@ data.threadList = ($) => {
 
   return res;
 };
+
+data.headerTitle = $ => $('#up ~ h2').text();
 
 data.paginateableData = data.threadList;
 
