@@ -73,8 +73,10 @@ export default class Register extends Component {
   }
 
   render() {
+    const { registrationStatus } = this.state;
+
     return (
-      <section className="confirm-email">
+      <section className="registration-page">
         <header>
           <h1>
             {this.state.isValidCode ?
@@ -85,44 +87,49 @@ export default class Register extends Component {
 
         {this.state.isValidCode && <main>
           <form onSubmit={this.handleFormSubmit}>
-            <label htmlFor="email">Username: </label>
-            <input
-              type="text"
-              placeholder="not seun"
-              id="username"
-              name="name"
-              minLength="4"
-              maxLength="15"
-              onChange={this.handleNameChange}
-              value={this.state.username}
-              required
-            />
+            <div className="form-wrapper">
+              <i className="fa fa-user"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                id="username"
+                name="name"
+                minLength="4"
+                maxLength="15"
+                onChange={this.handleNameChange}
+                value={this.state.username}
+                required
+              />
+            </div>
 
-            <label htmlFor="password">Password: </label>
-            <input
-              type="password"
-              placeholder="********"
-              id="password"
-              name="password"
-              minLength="8"
-              onChange={this.handlePasswordChange}
-              value={this.state.password}
-              required
-            />
+            <div className="form-wrapper">
+              <i className="fa fa-key"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                id="password"
+                name="password"
+                minLength="8"
+                onChange={this.handlePasswordChange}
+                value={this.state.password}
+                required
+              />
+            </div>
+
 
             <button type="submit">
-              submit
+              Submit
               {this.state.fetchingFormResult &&
                 <i className="fa fa-spinner fa-pulse"></i>
               }
             </button>
           </form>
 
-          <p
+          {registrationStatus && <p
             className="registration-status"
-            dangerouslySetInnerHTML={{__html: this.state.registrationStatus}}
+            dangerouslySetInnerHTML={{__html: registrationStatus}}
           >
-          </p>
+          </p>}
         </main>}
       </section>
     );
