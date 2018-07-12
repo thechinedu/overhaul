@@ -17,7 +17,7 @@ should be greeted to a modern and slick new nairaland.
 
 ### Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/blueyedgeek/overhaul/blob/master/CONTRIBUTING.md)
+Please read [CONTRIBUTING.md](https://github.com/blueyedgeek/overhaul/blob/development/CONTRIBUTING.md)
 for details on code of conduct, and the process for submitting pull requests.
 
 
