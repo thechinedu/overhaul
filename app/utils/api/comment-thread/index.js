@@ -6,7 +6,9 @@ data.commentThreadTitle = (doc) => {
 };
 
 data.comments = (doc) => {
-  const users = Array.from(doc('table[summary=posts] .user')).map( elem => doc(elem).text() ),
+  const commentContainers = Array.from(doc('table[summary=posts] .l.w.pd')),
+    users = Array.from(doc('table[summary=posts] .user'))
+      .map( elem => doc(elem).text() ),
     timestamps = Array.from(doc('table[summary=posts] .user ~ .s')),
     commentBodies = Array.from(doc('table[summary=posts] .narrow')),
     res = [];
@@ -14,9 +16,12 @@ data.comments = (doc) => {
   commentBodies.forEach( (elem, index) => {
     const userName = users[index],
       createdAt = doc(timestamps[index]).text(),
-      commentBody = doc(elem).html();
+      commentBody = doc(elem).html(),
+      attachedImages = Array.from(doc(commentContainers[index])
+        .find('.attachmentimage.img')
+        .map((i, img) => doc(img).attr('src')));
 
-    res.push({ userName, createdAt, commentBody });
+    res.push({ userName, createdAt, commentBody, attachedImages });
   });
 
   return res;

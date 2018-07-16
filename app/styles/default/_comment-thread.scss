@@ -38,6 +38,10 @@
           .comment {
             margin: 15px auto;
           }
+
+          > img[alt=attachment] {
+            margin: 3px 0;
+          }
         }
       }
     }
