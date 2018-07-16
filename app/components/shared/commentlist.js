@@ -4,8 +4,20 @@ import withProfileImage from 'utils/hoc/with-profile-image';
 
 @withProfileImage
 class Comment extends React.Component {
+  displayAttachedImages(sources) {
+    return sources.map(src => (
+      <img src={src} alt="attachment" key={src} />
+    ));
+  }
+
   render() {
-    const { createdAt, commentBody, userName, profileImage } = this.props;
+    const {
+      createdAt,
+      commentBody,
+      userName,
+      profileImage,
+      attachedImages
+    } = this.props;
 
     return (
       <div className="comment-item">
@@ -29,6 +41,8 @@ class Comment extends React.Component {
             dangerouslySetInnerHTML={{__html: commentBody}}
           >
           </div>
+
+          { this.displayAttachedImages(attachedImages) }
         </div>
       </div>
     );
@@ -36,15 +50,17 @@ class Comment extends React.Component {
 }
 
 const mapCommentsList = (comments, currentUser) => {
-  return comments.map( ({userName, createdAt, commentBody}, index) => (
-    <Comment
-      key={index}
-      currentUser={currentUser}
-      userName={userName}
-      createdAt={createdAt}
-      commentBody={commentBody}
-    />
-  ));
+  return comments.map(
+    ({userName, createdAt, commentBody, attachedImages}, index) => (
+      <Comment
+        key={index}
+        currentUser={currentUser}
+        userName={userName}
+        createdAt={createdAt}
+        commentBody={commentBody}
+        attachedImages={attachedImages}
+      />
+    ));
 };
 
 const CommentList = ({ comments, currentUser }) => {
