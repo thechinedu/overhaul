@@ -10,6 +10,7 @@ const mapThreadList = (threads, currentUser) => {
         threadOwnerName={thread.ownerName}
         threadSection={thread.section}
         threadCommentCount={thread.commentCount}
+        threadViewsCount={thread.viewsCount}
         key={index}
         currentUser={currentUser}
       />

@@ -1,0 +1,33 @@
+.composite__thread-list {
+  flex-wrap: wrap;
+
+  .composite__thread-list-header {
+    flex-basis: 100%;
+  }
+
+  .main__content {
+    flex-grow: 0.5;
+  }
+}
+
+.tab__switcher {
+  border-bottom: 1px solid $almost-white;
+  flex-basis: 65%;
+  margin-left: 30%;
+  margin-top: 3%;
+  padding: 10px;
+
+  .tab__control {
+    cursor: pointer;
+    margin-right: 10px;
+
+    &.active {
+      border: 2px solid $almost-white;
+      border-bottom: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-weight: bold;
+      padding: 10px;
+    }
+  }
+}

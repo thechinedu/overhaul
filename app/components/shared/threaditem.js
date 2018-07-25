@@ -7,6 +7,7 @@ export default class ThreadItem extends React.Component {
     threadOwnerName: '',
     threadSection: '',
     commentCount: '',
+    viewsCount: '',
     profileImage: 'http://via.placeholder.com/35x35'
   }
 
@@ -15,7 +16,8 @@ export default class ThreadItem extends React.Component {
       url,
       threadOwnerName ,
       threadSection,
-      threadCommentCount
+      threadCommentCount,
+      threadViewsCount
     } = this.props;
     let html, doc;
 
@@ -24,11 +26,11 @@ export default class ThreadItem extends React.Component {
       doc = cheerio.load(html);
     }
     const ownerName = threadOwnerName || doc('table[summary=posts] .user').first().text();
-    const section = threadSection || doc('.body > h2 + .bold a:nth-of-type(3)').text();
+    const section = threadSection 
     const profileImage = await threadDetails.fetchOwnerImage(currentUser, ownerName);
 
     await this.setTotalCommentCount(threadCommentCount);
-    this.setState( () => ( { threadOwnerName: ownerName, threadSection: section, profileImage } ));
+    this.setState( () => ( { threadOwnerName: ownerName, threadSection: section, profileImage,viewsCount: threadViewsCount } ));
   }
 
   async setTotalCommentCount(count) {
@@ -40,7 +42,7 @@ export default class ThreadItem extends React.Component {
 
   render() {
     const { url, text } = this.props;
-    const { threadOwnerName, threadSection, commentCount, profileImage } = this.state;
+    const { threadOwnerName, threadSection, commentCount, viewsCount, profileImage } = this.state;
 
     return (
       <div className="thread-item">
@@ -56,12 +58,12 @@ export default class ThreadItem extends React.Component {
             </span>
           </div>
 
-          <div className="thread-section">
+          {threadSection && <div className="thread-section">
             <i className="fa fa-folder-open"></i>
             <span>
               { threadSection }
             </span>
-          </div>
+          </div>}
 
           <div className="thread-comment-count">
             <i className="fa fa-comments"></i>
@@ -69,6 +71,13 @@ export default class ThreadItem extends React.Component {
               { commentCount }
             </span>
           </div>
+
+          {viewsCount && <div className="thread-view-count">
+            <i className="fa fa-eye"></i>
+            <span>
+              { viewsCount }
+            </span>
+          </div>}
         </div>
 
       </div>
