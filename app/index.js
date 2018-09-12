@@ -11,12 +11,13 @@ import Register from './components/register';
 import Profile from './components/profile';
 import CompositeThreadList from './components/shared/composite-thread-list';
 import CompositeCommentList from './components/shared/composite-comment-list';
-
+import ForumSection from './components/forum-section';
 import generateNewApplicationContainer from 'utils/generate-app-container';
 import searchQuery from 'utils/search-query';
 
 const $ = cheerio.load(document.body.innerHTML);
 const currentUser = $('#up .user').text();
+const forumSections = ['nairaland', 'politics', 'foreign-affairs', 'racism-tribalism', 'crime', 'dating', 'sexuality', 'romance', 'jobs', 'career', 'business', 'b2b', 'adverts', 'investment', 'nysc', 'education', 'education-ads']
 
 import './styles/default/overhaul.scss';
 
@@ -162,6 +163,8 @@ class App extends React.Component {
           headerTitle={`Search results for ${searchQuery()}`}
         />
       );
+    } else if (forumSections.includes(location.pathname.split('/')[1])) {
+      return (<ForumSection document={$} currentUser={currentUser} currentTab={location.pathname.split('/')[2]} />);
     } else if ( location.pathname.match(/^\/[\w]+$/) ) {
       return (<Profile document={$} currentUser={currentUser}/>);
     } else if ( location.pathname.match(/^\/[\w]+\/topics$/) ) {
