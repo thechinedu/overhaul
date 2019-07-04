@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "node ./scripts/setup",
     "start": "webpack -w",
-    "build:prod": "NODE_ENV='production' webpack -p && zip -r dist/overhaul.zip dist"
+    "build:prod": "NODE_ENV='production' webpack -p && zip -r dist/overhaul.zip dist",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +38,8 @@
     "cheerio": "^1.0.0-rc.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "sweetalert": "^2.1.0"
-  }
+    "sweetalert": "^2.1.0",
+    "snyk": "^1.190.0"
+  },
+  "snyk": true
 }
